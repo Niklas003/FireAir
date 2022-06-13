@@ -1,1 +1,15 @@
-<p>mission-config works!</p>
+<mat-stepper [color]="" class="example-stepper bg-[#9a9a9a] text-white">
+  <mat-step label="Fill out your name">
+  </mat-step>
+  <mat-step label="Fill out your address">
+  </mat-step>
+  <mat-step label="Fill out your phone number">
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+    </div>
+  </mat-step>
+</mat-stepper>

@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StartpageComponent } from './startpage/startpage.component';
 
 import {MatButtonModule} from '@angular/material/button';
+import {MatStepperModule} from '@angular/material/stepper';
+
 import { MissionConfigComponent } from './mission-config/mission-config.component';
 
 @NgModule({
@@ -19,7 +21,8 @@ import { MissionConfigComponent } from './mission-config/mission-config.componen
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]
