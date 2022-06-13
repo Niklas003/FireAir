@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StartpageComponent } from './startpage/startpage.component';
 
 import {MatButtonModule} from '@angular/material/button';
+import { MissionConfigComponent } from './mission-config/mission-config.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    StartpageComponent
+    StartpageComponent,
+    MissionConfigComponent
   ],
   imports: [
     BrowserModule,

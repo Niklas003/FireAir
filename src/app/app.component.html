@@ -1,1 +1,2 @@
-<app-startpage></app-startpage>
+<app-startpage *ngIf="router.url==='/'"></app-startpage>
+<router-outlet></router-outlet>
