@@ -1,7 +1,7 @@
 
-  <div class="mb-4 ml-4">
+  <div class="mb-6">
     <h1>Einsatzzeit wählen</h1>
     <mat-card class="demo-inline-calendar-card w-5/12">
-        <mat-calendar [(selected)]="selected"></mat-calendar>
+        <mat-calendar [(selected)]="selected" (change)="setDateValue(selected)"></mat-calendar>
       </mat-card>
   </div>

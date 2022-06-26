@@ -9,32 +9,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 @import '~@angular/material/theming';
 @include mat-core();
 
-$my-app-primary: mat-palette($mat-blue-grey);
+$my-app-primary: mat-palette($mat-orange);
 $my-app-accent:  mat-palette($mat-blue, 500, 900, A100);
 $my-app-warn:    mat-palette($mat-red);
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+$my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent, $my-app-warn);
 @include angular-material-theme($my-app-theme);
-
-.mat-horizontal-stepper-header-container{
-    background-color: #8A8A8A;
-}
-.mat-step-text-label{
-    color: white;
-}
-
-.mat-horizontal-stepper-content{
-    background-color: #8A8A8A;
-}
-
-.mat-horizontal-content-container{
-    padding: 0 !important;
-}
-
-
-::ng-deep body{
-    background-color: #8A8A8A;
-}
-
-.ng-trigger-horizontalStepTransition{
-    background-color: #8A8A8A;
-}

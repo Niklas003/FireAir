@@ -12,6 +12,12 @@ export class MissionDateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setDateValue(this.selected);
   }
 
+  setDateValue(selected:any):void{
+    localStorage.setItem('MissionDate', selected);
+    var Date = localStorage.getItem('MissionDate');
+    console.log(Date);
+  }
 }
