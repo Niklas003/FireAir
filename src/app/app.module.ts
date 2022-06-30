@@ -18,6 +18,8 @@ import { MissionDateComponent } from './missionConfigPages/mission-date/mission-
 import { MissionMonitoringComponent } from './missionConfigPages/mission-monitoring/mission-monitoring.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MissionLocationComponent } from './missionConfigPages/mission-location/mission-location.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import {MatInputModule} from '@angular/material/input';
     StartpageComponent,
     MissionConfigComponent,
     MissionDateComponent,
-    MissionMonitoringComponent
+    MissionMonitoringComponent,
+    MissionLocationComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import {MatInputModule} from '@angular/material/input';
     MatFormFieldModule,
     MatCardModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    MatAutocompleteModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

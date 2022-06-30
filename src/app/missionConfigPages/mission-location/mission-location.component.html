@@ -1,0 +1,25 @@
+<h1 class="text-6xl">Einsatzort</h1>
+<div class="mb-6">
+    <form [style.fontSize.px]="20">
+      <mat-form-field appearance="fill">
+        <mat-label>Art</mat-label>
+        <input type="text"
+               matInput
+               formControlName="stateGroup"
+               required
+               [matAutocomplete]="autoGroup">
+          <mat-autocomplete #autoGroup="matAutocomplete">
+            <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.letter">
+              <mat-option *ngFor="let name of group.names" [value]="name">
+                {{name}}
+              </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+      </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill" class="w-2/6" color="warn">
+            <mat-label>Einsatzort</mat-label>
+            <input matInput required>
+          </mat-form-field>
+    </form>
+</div>
