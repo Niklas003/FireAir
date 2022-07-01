@@ -11,7 +11,10 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import {MatIconModule} from '@angular/material/icon';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 import { MissionConfigComponent } from './mission-config/mission-config.component';
 import { MissionDateComponent } from './missionConfigPages/mission-date/mission-date.component';
@@ -28,7 +31,7 @@ import { MissionLocationComponent } from './missionConfigPages/mission-location/
     MissionConfigComponent,
     MissionDateComponent,
     MissionMonitoringComponent,
-    MissionLocationComponent
+    MissionLocationComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,10 @@ import { MissionLocationComponent } from './missionConfigPages/mission-location/
     MatNativeDateModule,
     MatInputModule,
     MatAutocompleteModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatIconModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,21 @@
 
   <div class="mb-6">
     <h1>Einsatzzeit wählen</h1>
-    <mat-card class="demo-inline-calendar-card w-5/12">
-        <mat-calendar [(selected)]="selected" (change)="setDateValue(selected)"></mat-calendar>
-      </mat-card>
+
+      <form [style.fontSize.px]="18" class="float-top">
+        <mat-grid-list cols="2">
+          <mat-grid-tile>
+            <mat-card class="demo-inline-calendar-card w-11/12">
+              <mat-calendar [(selected)]="selected" (change)="setDateValue(selected)"></mat-calendar>
+            </mat-card>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-form-field class="example-full-width w-11/12" appearance="fill">
+              <mat-label>Uhrzeit</mat-label>
+              <input matInput type="time">
+              <mat-icon matSuffix>schedule</mat-icon>
+            </mat-form-field>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
   </div>

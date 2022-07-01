@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Observable} from 'rxjs';
 import {startWith, map} from 'rxjs/operators';
 
-export interface StateGroup {
-  category: string;
+export interface MissionGroup {
+  letter: string;
   names: string[];
 }
 
@@ -19,45 +20,52 @@ export const _filter = (opt: string[], value: string): string[] => {
   styleUrls: ['./mission-location.component.scss']
 })
 export class MissionLocationComponent implements OnInit {
-  
-  stateForm = this._formBuilder.group({
-    stateGroup: '',
+  missionForm: FormGroup = this._formBuilder.group({
+    missionGroup: '',
   });
 
-  stateGroups: StateGroup[] = [
+  missionGroups: MissionGroup[] = [
     {
-      category: 'ABC',
+      letter: 'ABC',
       names: ['ABC Einsatz'],
     },
     {
-      category: 'Gebäude',
+      letter: 'Gebäude',
       names: ['Brand Gebäude', 'Brand Gebäude klein', 'Brand Gebäude groß'],
     },
     {
-      category: 'Fahrzeug',
-      names: ['Brand PKW', 'Brand LKW', 'Brand PKW + LKW'],
+      letter: 'Fläche',
+      names: ['Brand Fläche', 'Brand Fläche klein', 'Brand Fläche groß'],
+    },
+    {
+      letter: 'Wald',
+      names: ['Brand Wald', 'Brand Wald klein', 'Brand Wald groß'],
+    },
+    {
+      letter: 'Fahrzeug',
+      names: ['Brand PKW', 'Brand LKW', 'Brand PKW + LKW', 'Brand Wasserfahrzeug', 'Brand Luftfahrzeug', 'Brand Schienenfahrzeug'],
     },
   ];
 
-  stateGroupOptions: any;
+  missionGroupOptions!: Observable<MissionGroup[]>;
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.stateGroupOptions = this.stateForm.get('stateGroup')!.valueChanges.pipe(
+    this.missionGroupOptions = this.missionForm.get('missionGroup')!.valueChanges.pipe(
       startWith(''),
-      map(value => this._filterGroup(value || '')),
+      map(value => this._filterGroup(value)),
     );
   }
 
-  private _filterGroup(value: string): StateGroup[] {
+  private _filterGroup(value: string): MissionGroup[] {
     if (value) {
-      return this.stateGroups
-        .map(group => ({category: group.category, names: _filter(group.names, value)}))
+      return this.missionGroups
+        .map(group => ({letter: group.letter, names: _filter(group.names, value)}))
         .filter(group => group.names.length > 0);
     }
 
-    return this.stateGroups;
+    return this.missionGroups;
   }
 }
 
