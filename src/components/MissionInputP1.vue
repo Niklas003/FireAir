@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, defineEmits } from 'vue';
 
 const emits =  defineEmits(['date', 'time', 'surveillance', 'management']);
 
