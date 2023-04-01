@@ -12,7 +12,8 @@
     </div>
 
     <div class="flex flex-row justify-between mx-12">
-            <router-link to="/" class="rounded-md p-2 border-2 border-white bg-white/10 text-white text-lg">zurück</router-link>
+            <router-link to="/" class="rounded-md p-2 border-2 border-white hover:bg-white/10 text-white text-lg">zurück</router-link>
+            <button class="rounded-md p-2 border-2 border-green-500 text-green-500 text-lg">Vorerst Überspringen</button>
             <router-link to="/" v-if="allInputsSet()" class="rounded-md p-2 border-2 border-green-500 bg-green-500/10 text-green-500 text-lg">Weiter</router-link>
             <button v-else class="rounded-md p-2 border-2 border-green-500/20 bg-green-500/10 text-green-500/10 text-lg">Weiter</button>
     </div>

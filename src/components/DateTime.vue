@@ -21,7 +21,7 @@ setInterval(() => {
 
 function getCurrentDate(){
     let dateTime = new Date();
-    dateStr.value = dateTime.toLocaleDateString('de-DE');
+    dateStr.value = dateTime.toLocaleDateString();
     timeStr.value = dateTime.toLocaleTimeString();
 
 }
