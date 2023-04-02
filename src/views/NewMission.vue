@@ -15,7 +15,7 @@
 
     <div class="flex flex-row justify-between mx-12">
             <button class="rounded-md p-2 border-2 border-green-500 text-green-500 text-lg">Vorerst Überspringen</button>
-            <router-link to="/" v-if="allInputsSet()" class="rounded-md p-2 border-2 border-green-500 bg-green-500/10 text-green-500 text-lg">Weiter</router-link>
+            <router-link to="/" v-if="tocontinue" class="rounded-md p-2 border-2 border-green-500 bg-green-500/10 text-green-500 text-lg">Weiter</router-link>
             <button v-else class="rounded-md p-2 border-2 border-green-500/20 bg-green-500/10 text-green-500/10 text-lg">Weiter</button>
     </div>
 </template>
@@ -26,7 +26,7 @@ import { onMounted, ref } from 'vue';
 
 const dateStr = ref('');
 const timeStr = ref('');
-const tocontinue = ref(false);
+var tocontinue = ref(false);
 var checkArr = ref<boolean[]>([]);
 
 function generateID(){
@@ -42,16 +42,11 @@ function getEmits(userInput: string, stringID: number){
     console.log(userInput);
     if(userInput.length == 0){
         checkArr.value[stringID] = false;
-        allInputsSet();
     }else{
         checkArr.value[stringID] = true;
     }
 }
-
-function allInputsSet(): boolean{
     tocontinue.value = checkArr.value[0] && checkArr.value[1] && checkArr.value[2] && checkArr.value[3]? true: false;
-    return tocontinue.value
-}
 
 function getCurrentDate(){
     let dateTime = new Date();
