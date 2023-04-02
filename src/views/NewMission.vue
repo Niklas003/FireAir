@@ -26,7 +26,7 @@ import { onMounted, ref } from 'vue';
 
 const dateStr = ref('');
 const timeStr = ref('');
-var tocontinue = ref(false);
+var tocontinue = ref<boolean>(false);
 var checkArr = ref<boolean[]>([]);
 
 function generateID(){
@@ -42,11 +42,17 @@ function getEmits(userInput: string, stringID: number){
     console.log(userInput);
     if(userInput.length == 0){
         checkArr.value[stringID] = false;
+        checkAllInput();
     }else{
         checkArr.value[stringID] = true;
+        checkAllInput();
     }
 }
+
+function checkAllInput(){
     tocontinue.value = checkArr.value[0] && checkArr.value[1] && checkArr.value[2] && checkArr.value[3]? true: false;
+    console.log(tocontinue.value);
+}
 
 function getCurrentDate(){
     let dateTime = new Date();
