@@ -18,7 +18,8 @@ const props = defineProps({
 });
 
 function emitInput() {
-    emits("user-input", userInput.value);    
+    if(userInput.value.length > 0)
+        emits("user-input", userInput.value);    
 }
 
 </script>
