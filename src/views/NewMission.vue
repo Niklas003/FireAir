@@ -50,7 +50,7 @@ onMounted(()=>{
 
 
 function getEmits(userInput: string, stringID: number){
-    if(userInput.length == 0){
+    if(userInput.length-1 == 0){
         checkArr.value[stringID] = false;
         checkAllInput();
     }else{
