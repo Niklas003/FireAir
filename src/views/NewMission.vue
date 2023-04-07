@@ -30,7 +30,18 @@ var tocontinue = ref<boolean>(false);
 var checkArr = ref<boolean[]>([]);
 
 function generateID(){
-    return Date.now()
+    let chr = "";
+    let dateStamp = Date.now();
+    console.log(dateStamp)
+    let dateLength = String(dateStamp).length;
+    if(dateLength % 2 !== 0){       //check if dateLenght is even
+        dateLength = dateLength-1;
+    }
+    for(let i = 0; i<dateLength/2; i++){
+        let firstNumbers = Number(String(dateStamp).slice(i*2,i*2+2)) % 26;
+        chr = chr + String.fromCharCode(65 + firstNumbers);
+    }
+        return chr;
 }
 
 onMounted(()=>{
