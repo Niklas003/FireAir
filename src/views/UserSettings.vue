@@ -1,24 +1,32 @@
 <template>
     <div class="p-12">
-        <h1 class="text-white text-4xl mb-12">Einstellungen</h1>
+        <router-link to="/" class="hover:underline text-white text-lg"><span class="material-symbols-rounded relative top-0.5 text-sm">arrow_back_ios</span> zurück</router-link>
 
-        <input required placeholder="Name Feuerwehr" type="text" class="invalid:bg-red-500/20 outline outline-offset-0 outline-2 outline-red-500 valid:bg-green-500/20 valid:outline-green-500 my-4 mt-8 p-2 rounded-md default:bg-white/70 text-xl text-white"
-        :value="depName" @input="e => depName = (e?.target as any)?.value"
-        >
+        <h1 class="text-white text-4xl my-12">Einstellungen</h1>
+
+        <ValueInputP1 placeholder="Name der Feuerwehr" @user-input="(userInput: string) => getEmits(userInput)"></ValueInputP1>
         <br>
-        <button @click="setValue()" v-if="depName.length > 2" class="bg-green-500 hover:bg-green-500/90 text-white p-2 rounded-md text-lg">Übernehmen</button>
+        <button @click="setValue()" v-if="depName" class="bg-green-500 hover:bg-green-500/90 text-white p-2 rounded-md text-lg">Übernehmen</button>
         <button v-else class="bg-green-500/20 text-white/20 p-2 rounded-md text-lg">Übernehmen</button>
     </div>
 </template>
 
 <script setup lang="ts">
+import ValueInputP1 from '@/components/ValueInputP1.vue';
 import { ref } from 'vue';
 
 
-var depName = ref("");
+var depName = ref<boolean>(false);
+var inputValue = ref("");
 
 function setValue(){
-    localStorage.setItem('depName', depName.value);
+    localStorage.setItem('depName', inputValue.value);
+}
+
+function getEmits(userInput:string): boolean{
+   inputValue.value = userInput;
+   depName.value = userInput.length > 0? true: false;
+   return depName.value
 }
 
 </script>
