@@ -5,7 +5,7 @@
             <h1 class="font-bold text-2xl">Einsatzdaten</h1>
             <p>Datum:</p>
             <p>Zeit:</p>
-            <p>AGT-ÜberWachung: {{ props.missionID }}</p>
+            <p>AGT-Überwachung: {{ props.missionID }}</p>
         </div>   
     </div>
 </template>
@@ -16,6 +16,8 @@ import { ref, defineProps } from 'vue';
 const props = defineProps({
     missionID: String,
 });
+
+console.log(props.missionID)
 
 const missionData = ref<string[]>([''])
 

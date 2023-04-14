@@ -15,7 +15,7 @@
 
     <div class="flex flex-col-reverse md:flex-row justify-between mx-12">
             <button class="rounded-md p-2 border-2 border-green-700 text-green-700 text-lg mt-4 md:mt-0">Vorerst Überspringen</button>
-            <router-link :missionID="generatedMissionID.toString()" @click="setMissionValues()" to="/checkMissionData" v-if="tocontinue" class="rounded-md p-2 border-2 border-green-500 bg-green-500/10 text-green-500 text-lg">Weiter <span class="material-symbols-rounded relative top-1.5">arrow_forward</span></router-link>
+            <router-link :missionID="generatedMissionID" @click="setMissionValues()" to="/checkMissionData" v-if="tocontinue" class="rounded-md p-2 border-2 border-green-500 bg-green-500/10 text-green-500 text-lg">Weiter <span class="material-symbols-rounded relative top-1.5">arrow_forward</span></router-link>
             <button v-else class="rounded-md p-2 border-2 border-green-500/20 bg-green-500/10 text-green-500/10 text-lg">Weiter <span class="material-symbols-rounded relative top-1.5">arrow_forward</span></button>
     </div>
 </template>
@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import MissionInputP1 from '@/components/ValueInputP1.vue';
 import { onMounted, ref } from 'vue';
-import { MissionData } from '../MissionData';
+import { MissionData, MissionID } from '../MissionData';
 
 const dateStr = ref('');
 const timeStr = ref('');
@@ -32,6 +32,7 @@ var checkArr = ref<boolean[]>([]);
 var missionValues = ref<string[]>(['']);
 const generatedMissionID = ref('');
 var missionObject: MissionData;
+var missionIdObject: MissionID;
 
 function generateID(){
     let chr = "";
@@ -76,6 +77,18 @@ function getCurrentDate(){
 }
 
 function setMissionValues(){
+
+    missionIdObject = {
+        ID: generatedMissionID.value,
+    };
+
+    if(localStorage.getItem("missionID") === null){
+        localStorage.setItem("missionID", JSON.stringify(missionIdObject));
+    }else{
+       const missionIdObjectString = localStorage.getItem("missionID")+JSON.stringify(missionIdObject)
+        localStorage.setItem("missionID", missionIdObjectString)
+    }
+
     missionObject = {
         missionID: generatedMissionID.value, 
         date: dateStr.value,
@@ -87,5 +100,4 @@ function setMissionValues(){
     };
     localStorage.setItem(generatedMissionID.value, JSON.stringify(missionObject));
 }
-
 </script>

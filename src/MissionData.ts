@@ -7,3 +7,7 @@ export interface MissionData {
     missionType: string,
     missionPlace: string,
 }
+
+export interface MissionID {
+    ID: string
+}
