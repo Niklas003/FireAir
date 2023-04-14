@@ -1,4 +1,4 @@
-interface MissionData {
+export interface MissionData {
     missionID: string,
     date: string,
     time: string,
