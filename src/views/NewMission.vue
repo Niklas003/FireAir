@@ -13,9 +13,9 @@
         <p class="text-md text-white">Einsatz ID: #{{generateID()}}</p>
     </div>
 
-    <div class="flex flex-row justify-between mx-12">
-            <button class="rounded-md p-2 border-2 border-green-500 text-green-500 text-lg">Vorerst Überspringen</button>
-            <router-link to="/" v-if="tocontinue" class="rounded-md p-2 border-2 border-green-500 bg-green-500/10 text-green-500 text-lg">Weiter <span class="material-symbols-rounded relative top-1.5">arrow_forward</span></router-link>
+    <div class="flex flex-col-reverse md:flex-row justify-between mx-12">
+            <button class="rounded-md p-2 border-2 border-green-700 text-green-700 text-lg mt-4 md:mt-0">Vorerst Überspringen</button>
+            <router-link @click="setMissionValues()" to="/checkMissionData" v-if="tocontinue" class="rounded-md p-2 border-2 border-green-500 bg-green-500/10 text-green-500 text-lg">Weiter <span class="material-symbols-rounded relative top-1.5">arrow_forward</span></router-link>
             <button v-else class="rounded-md p-2 border-2 border-green-500/20 bg-green-500/10 text-green-500/10 text-lg">Weiter <span class="material-symbols-rounded relative top-1.5">arrow_forward</span></button>
     </div>
 </template>
@@ -28,11 +28,11 @@ const dateStr = ref('');
 const timeStr = ref('');
 var tocontinue = ref<boolean>(false);
 var checkArr = ref<boolean[]>([]);
+var missionValues = ref<string[]>(['']);
 
 function generateID(){
     let chr = "";
     let dateStamp = Date.now();
-    console.log(dateStamp)
     let dateLength = String(dateStamp).length;
     if(dateLength % 2 !== 0){       //check if dateLenght is even
         dateLength = dateLength-1;
@@ -55,13 +55,13 @@ function getEmits(userInput: string, stringID: number){
         checkAllInput();
     }else{
         checkArr.value[stringID] = true;
+        missionValues.value[stringID] = userInput;
         checkAllInput();
     }
 }
 
 function checkAllInput(){
     tocontinue.value = checkArr.value[0] && checkArr.value[1] && checkArr.value[2] && checkArr.value[3]? true: false;
-    console.log(tocontinue.value);
 }
 
 function getCurrentDate(){
@@ -69,6 +69,13 @@ function getCurrentDate(){
     dateStr.value = dateTime.toLocaleDateString('de-DE');
     timeStr.value = dateTime.toLocaleTimeString();
 
+}
+
+function setMissionValues(){
+    localStorage.setItem("surveillance", missionValues.value[0]);
+    localStorage.setItem("manager", missionValues.value[1]);
+    localStorage.setItem("missionType", missionValues.value[2]);
+    localStorage.setItem("missionPlace", missionValues.value[3]);
 }
 
 </script>

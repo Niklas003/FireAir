@@ -19,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/settings',
     name: 'settings',
     component: () => import('../views/UserSettings.vue')
+  },
+  {
+    path: '/checkMissionData',
+    name: 'checkMissionData',
+    component: () => import('../views/CheckMissionData.vue')
   }
 ]
 
