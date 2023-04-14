@@ -23,12 +23,15 @@
 <script setup lang="ts">
 import MissionInputP1 from '@/components/ValueInputP1.vue';
 import { onMounted, ref } from 'vue';
+import { MissionData } from '../MissionData';
 
 const dateStr = ref('');
 const timeStr = ref('');
 var tocontinue = ref<boolean>(false);
 var checkArr = ref<boolean[]>([]);
 var missionValues = ref<string[]>(['']);
+const missionID = ref('');
+var missionObject: MissionData;
 
 function generateID(){
     let chr = "";
@@ -41,6 +44,7 @@ function generateID(){
         let firstNumbers = Number(String(dateStamp).slice(i*2,i*2+2)) % 26;
         chr = chr + String.fromCharCode(65 + firstNumbers);
     }
+        missionID.value = chr;
         return chr;
 }
 
@@ -72,10 +76,17 @@ function getCurrentDate(){
 }
 
 function setMissionValues(){
-    localStorage.setItem("surveillance", missionValues.value[0]);
-    localStorage.setItem("manager", missionValues.value[1]);
-    localStorage.setItem("missionType", missionValues.value[2]);
-    localStorage.setItem("missionPlace", missionValues.value[3]);
+    missionObject = {
+        missionID: missionID.value, 
+        date: dateStr.value,
+        time: timeStr.value,
+        surveillance: missionValues.value[0],
+        manager: missionValues.value[1],
+        missionType: missionValues.value[2],
+        missionPlace: missionValues.value[3],
+    };
+    localStorage.setItem(missionID.value, JSON.stringify(missionObject));
+    console.log(localStorage.getItem(missionID.value));
 }
 
 </script>
