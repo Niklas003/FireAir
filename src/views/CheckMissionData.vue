@@ -4,14 +4,16 @@
         <div class="bg-sky-950 p-4 rounded-md mt-8 text-white">
             <h1 class="font-bold text-2xl">Einsatzdaten <span class="font-light text-xl">#{{ props.missionID }}</span></h1>
             <hr>
-            <p class="py-2">Datum: {{ missionData.date }}</p >
-            <p class="py-2">Zeit: {{ missionData.time }}</p>
-            <p class="py-2">AGT-Überwachung: {{ missionData.surveillance }}</p>
-            <p class="py-2">Einsatzleitung: {{ missionData.manager }}</p>
-            <p class="py-2">Einsatzstichwort: {{ missionData.missionType }}</p>
-            <p class="py-2">Einsatzort: {{ missionData.missionPlace }}</p>
+            <p class="py-2">Datum: <b>{{ missionData?.date }}</b></p >
+            <p class="py-2">Startzeit: <b>{{ missionData?.time }}</b></p>
+            <p class="py-2">AGT-Überwachung: <b>{{ missionData?.surveillance }}</b></p>
+            <p class="py-2">Einsatzleitung: <b>{{ missionData?.manager }}</b></p>
+            <p class="py-2">Einsatzstichwort: <b>{{ missionData?.missionType }}</b></p>
+            <p class="py-2">Einsatzort: <b>{{ missionData?.missionPlace }}</b></p>
         </div>
-        <button class="animate-pulse border-2 border-green-500 rounded-md text-green-500 p-2 bg-green-500/10 mt-4 text-xl">Abschließen</button>   
+        <div class="flex flex-row mt-8">
+            <button class="w-full animate-pulse border-2 border-green-500 rounded-md text-green-500 p-2 bg-green-500/10 text-xl">Abschließen</button>   
+        </div>
     </div>
 </template>
 
@@ -19,7 +21,7 @@
 import { MissionData } from '@/MissionData';
 import { ref, defineProps, onMounted } from 'vue';
 
-var missionData: MissionData;
+var missionData = ref<MissionData>() ;
 var missionID = ref<string>('');
 
 const props = defineProps({
@@ -40,7 +42,16 @@ function getMissionData(){
         else{
             // missionString cannot get null because of the fetch by the if statement
             let missionString:string = localStorage.getItem(props.missionID);
-            missionData = JSON.parse(missionString);
+            const missionJSON = JSON.parse(missionString);
+            missionData.value = {
+                date: missionJSON.date,
+                time: missionJSON.time,
+                surveillance: missionJSON.surveillance,
+                manager: missionJSON.manager,
+                missionType: missionJSON.missionType,
+                missionPlace: missionJSON.missionPlace,
+                missionID: missionJSON.missionID
+            }
             console.log(missionData);
         }
     }        
