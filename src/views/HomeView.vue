@@ -8,7 +8,6 @@
     </router-link>
       <div class="cursor-pointer bg-transparent border-white border-2 lg:w-1/4 md:w-1/2 rounded-md text-3xl text-white text-center p-10 my-8 font-semibold">Einsatz laden</div>
     </div>
-    <router-link to="/settings">Einstellungen</router-link>
 </div>
 </template>
 
