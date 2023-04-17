@@ -1,8 +1,6 @@
 <template>
-    <div class="p-12">
-        <router-link to="/" class="hover:underline text-white text-lg"><span class="material-symbols-rounded relative top-0.5 text-sm">arrow_back_ios</span> zurück</router-link>
-
-        <h1 class="text-white text-4xl my-12">Einstellungen</h1>
+    <div class="p-8">
+        <h1 class="text-white text-4xl my-4">Einstellungen</h1>
 
         <ValueInputP1 placeholder="Name der Feuerwehr" @user-input="(userInput: string) => getEmits(userInput)"></ValueInputP1>
         <br>
