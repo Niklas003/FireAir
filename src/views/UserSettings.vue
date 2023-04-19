@@ -1,7 +1,7 @@
 <template>
     <div class="p-8">
         <h1 class="text-white text-4xl my-4">Einstellungen</h1>
-
+        <ValueInputSelect placeholder="Bundesland wählen" :options="federalStates"></ValueInputSelect>
         <ValueInputP1 placeholder="Name der Feuerwehr" @user-input="(userInput: string) => getEmits(userInput)"></ValueInputP1>
         <br>
         <button @click="setValue()" v-if="depName" class="bg-green-500 hover:bg-green-500/90 text-white p-2 rounded-md text-lg">Übernehmen</button>
@@ -11,6 +11,7 @@
 
 <script setup lang="ts">
 import ValueInputP1 from '@/components/ValueInputP1.vue';
+import ValueInputSelect from '@/components/ValueInputSelect.vue';
 import { ref } from 'vue';
 
 
@@ -26,5 +27,24 @@ function getEmits(userInput:string): boolean{
    depName.value = userInput.length > 0? true: false;
    return depName.value
 }
+
+const federalStates =[
+    "Baden Württemberg",
+    "Bayern",
+    "Berlin",
+    "Brandenburg",
+    "Bremen",
+    "Hamburg",
+    "Hessen",
+    "Mecklenburg-Vorpommern",
+    "Niedersachsen",
+    "Nordrhein Westfalen",
+    "Rheinland-Pfalz",
+    "Saarland",
+    "Sachsen",
+    "Sachsen-Anhalt",
+    "Schleswig-Holstein",
+    "Thüringen"
+];
 
 </script>
