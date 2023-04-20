@@ -14,7 +14,7 @@
     </div>
 
     <div class="flex flex-col-reverse md:flex-row justify-between mx-12 pb-8">
-            <button class="rounded-md p-2 border-2 border-sky-400 text-sky-400 text-lg mt-4 md:mt-0">Vorerst Überspringen</button>
+            <button class="rounded-md p-2 hover:underline text-sky-400 text-lg mt-4 md:mt-0">Vorerst Überspringen</button>
             <router-link :to="{name: 'checkMissionData', params:{missionID: generatedMissionID}}" @click="setMissionValues()" v-if="tocontinue" class="rounded-md p-2 border-2 border-green-500 bg-green-500/10 text-green-500 text-lg text-center">            
                 <button>Weiter <span class="material-symbols-rounded relative top-1.5">arrow_forward</span></button>
             </router-link>

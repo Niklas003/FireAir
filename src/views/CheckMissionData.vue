@@ -1,7 +1,7 @@
 <template>
     <div class="p-4">
         <router-link to="/newmission" class="hover:underline text-white text-lg"><span class="material-symbols-rounded relative top-0.5 text-sm">arrow_back_ios</span> zurück</router-link>
-        <div class="bg-sky-950 p-4 rounded-md mt-8 text-white">
+        <div class="bg-gray-700 p-4 rounded-md mt-8 text-white">
             <h1 class="font-bold text-2xl">Einsatzdaten <span class="font-light text-xl">#{{ props.missionID }}</span></h1>
             <hr>
             <p class="py-2">Datum: <b>{{ missionData?.date }}</b></p >
@@ -12,7 +12,9 @@
             <p class="py-2">Einsatzort: <b>{{ missionData?.missionPlace }}</b></p>
         </div>
         <div class="flex flex-row mt-8">
-            <button class="w-full animate-pulse border-2 border-green-500 rounded-md text-green-500 p-2 bg-green-500/10 text-xl">Abschließen</button>   
+            <router-link :to="{name: 'missionDashboard', params:{missionID: props.missionID}}" 
+            class="w-full animate-pulse border-2 border-green-500 rounded-md text-green-500 p-2 bg-green-500/10 text-2xl text-center">Abschließen  
+            </router-link>
         </div>
     </div>
 </template>
