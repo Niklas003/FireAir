@@ -25,7 +25,7 @@
 <script setup lang="ts">
 import MissionInputP1 from '@/components/ValueInputP1.vue';
 import { onMounted, ref } from 'vue';
-import { MissionData, MissionID } from '../MissionData';
+import { MissionData, MissionID } from '../Interfaces/MissionData';
 
 const dateStr = ref('');
 const timeStr = ref('');

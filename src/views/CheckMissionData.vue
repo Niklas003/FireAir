@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { MissionData } from '@/MissionData';
+import { MissionData } from '../Interfaces/MissionData';
 import { ref, defineProps, onMounted } from 'vue';
 
 var missionData = ref<MissionData>() ;
