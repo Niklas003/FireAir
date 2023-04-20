@@ -18,7 +18,7 @@ import { ref, defineEmits, defineProps } from 'vue';
 
 var userInput = ref<string>("");
 
-const emits =  defineEmits(['user-input']);
+const emits =  defineEmits(['select-input']);
 const props = defineProps({
     placeholder: String,
     options: Array,
@@ -27,8 +27,7 @@ const props = defineProps({
 console.log(props.options)
 
 function emitInput() {
-        emits("user-input", userInput.value);
-        console.log(userInput.value)    
+        emits("select-input", userInput.value);
 }
 
 </script>

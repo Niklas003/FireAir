@@ -1,10 +1,10 @@
 <template>
     <div class="p-8">
         <h1 class="text-white text-4xl my-4">Einstellungen</h1>
-        <ValueInputSelect placeholder="Bundesland wählen" :options="federalStates"></ValueInputSelect>
+        <ValueInputSelect placeholder="Bundesland wählen" @select-input="(selectInput: string) => setState(selectInput)" :options="federalStates"></ValueInputSelect>
         <ValueInputP1 placeholder="Name der Feuerwehr" @user-input="(userInput: string) => getEmits(userInput)"></ValueInputP1>
         <br>
-        <button @click="setValue()" v-if="depName" class="bg-green-500 hover:bg-green-500/90 text-white p-2 rounded-md text-lg">Übernehmen</button>
+        <button @click="setValues()" v-if="depName" class="bg-green-500 hover:bg-green-500/90 text-white p-2 rounded-md text-lg">Übernehmen</button>
         <button v-else class="bg-green-500/20 text-white/20 p-2 rounded-md text-lg">Übernehmen</button>
     </div>
 </template>
@@ -18,8 +18,18 @@ import { ref } from 'vue';
 var depName = ref<boolean>(false);
 var inputValue = ref("");
 
-function setValue(){
+
+function setValues(){
+    setStationName();
+}
+
+function setStationName(){
     localStorage.setItem('depName', inputValue.value);
+
+}
+
+function setState(fedState: string){
+    localStorage.setItem('federalState', fedState);
 }
 
 function getEmits(userInput:string): boolean{
