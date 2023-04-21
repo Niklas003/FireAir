@@ -31,6 +31,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'missionDashboard',
     component: () => import('../views/MissionDashboard.vue'),
     props: true
+  },
+  {
+    path: '/loadMissions',
+    name: 'loadMissions',
+    component: () => import('../views/LoadMissions.vue'),
   }
 ]
 
