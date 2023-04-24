@@ -88,7 +88,7 @@ function setMissionValues(){
         let missionId = [missionIdObject.ID]
         localStorage.setItem("missionID", JSON.stringify(missionId));
     }else{
-       let missionIdString: string[] = JSON.parse(localStorage.getItem("missionID"));
+       let missionIdString: string[] = JSON.parse(localStorage.getItem("missionID") || "[]");
        missionIdString.push(missionIdObject.ID)
        localStorage.setItem("missionID", JSON.stringify(missionIdString))
     }

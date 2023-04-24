@@ -38,16 +38,13 @@ onMounted(()=>{
 });
 
 function getMissionIDs(){
-   let missionIDs:string = localStorage.getItem("missionID");
-    missionID.value = JSON.parse(missionIDs);
+    missionID.value = JSON.parse(localStorage.getItem("missionID") || "[]");
     console.log(missionID.value);
 }
 
 function getMissionData(){
     for(var i in missionID.value){
-       let missionData: string =  localStorage.getItem(i);
-       console.log(missionData)
-       missionDataObj.value = JSON.parse(missionData);
+       missionDataObj.value = JSON.parse(localStorage.getItem(i) || "{}");
     }
 }
 
