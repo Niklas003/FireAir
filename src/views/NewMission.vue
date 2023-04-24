@@ -85,10 +85,12 @@ function setMissionValues(){
     };
 
     if(localStorage.getItem("missionID") === null){
-        localStorage.setItem("missionID", JSON.stringify(missionIdObject));
+        let missionId = [missionIdObject.ID]
+        localStorage.setItem("missionID", JSON.stringify(missionId));
     }else{
-       const missionIdObjectString = localStorage.getItem("missionID")+JSON.stringify(missionIdObject)
-        localStorage.setItem("missionID", missionIdObjectString)
+       let missionIdString: string[] = JSON.parse(localStorage.getItem("missionID"));
+       missionIdString.push(missionIdObject.ID)
+       localStorage.setItem("missionID", JSON.stringify(missionIdString))
     }
 
     missionObject = {
