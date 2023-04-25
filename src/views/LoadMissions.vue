@@ -10,15 +10,17 @@
                             <th class="border border-slate-600 text-xl">Uhrzeit</th>
                             <th class="border border-slate-600 text-xl">Einsatzart</th>
                             <th class="border border-slate-600 text-xl">Einsatzort</th>
+                            <th class="border border-slate-600 text-xl bg-red-600">Entfernen</th>
                         </tr>
                     </thead>
-                    <tbody class="hover:bg-[#3c454b] cursor-pointer">
-                        <tr v-for="(i, index) in missionID" :key="index">
+                    <tbody class="cursor-pointer">
+                        <tr class="hover:bg-[#3c454b]" v-for="(i, index) in missionID" :key="index">
                             <th class="border border-slate-600 font-normal py-4 text-lg">{{ i }}</th>
-                            <th class="border border-slate-600 font-normal text-lg">{{index}}</th>
-                            <th class="border border-slate-600 font-normal text-lg">Uhrzeit</th>
-                            <th class="border border-slate-600 font-normal text-lg">Einsatzart</th>
-                            <th class="border border-slate-600 font-normal text-lg">Einsatzort</th>
+                            <th class="border border-slate-600 font-normal text-lg">{{missionDataObject[index].date}}</th>
+                            <th class="border border-slate-600 font-normal text-lg">{{missionDataObject[index].time}}</th>
+                            <th class="border border-slate-600 font-normal text-lg">{{missionDataObject[index].missionType}}</th>
+                            <th class="border border-slate-600 font-normal text-lg">{{missionDataObject[index].missionPlace}}</th>
+                            <th class="border border-slate-600 font-normal text-lg bg-red-800/20"><span class="text-red-600 material-symbols-rounded relative top-0.5">delete</span></th>
                         </tr>
                     </tbody>
                 </table>
@@ -31,26 +33,22 @@ import { MissionID } from '@/Interfaces/MissionData';
 import { ref, onMounted } from 'vue';
 
 const missionID = ref<MissionID>();
-const missionDataObj = ref<MissionData>([]);
+const missionDataObject = ref<MissionData>([]);
 
 onMounted(()=>{
     getMissionIDs();
-    getMissionData();
 });
 
 function getMissionIDs(){
     missionID.value = JSON.parse(localStorage.getItem("missionID") || "[]");
-    console.log(missionID.value);
+    getMissionData();
 }
 
 function getMissionData(){
-    console.log("this is it "+ missionID.value[0]);
     for(var i of missionID.value){
-       let missData:MissionData = JSON.parse(localStorage.getItem(i) || "{}");
-       missionDataObj.value.push(missData);       
+       let missData:MissionData = JSON.parse(localStorage.getItem(i) || "{}");        
+        missionDataObject.value.push(missData);       
     }
-    console.log(missionDataObj.value[0].time);
-    
 }
 
 </script>
