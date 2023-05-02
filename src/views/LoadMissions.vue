@@ -32,8 +32,8 @@ import { MissionData } from '@/Interfaces/MissionData';
 import { MissionID } from '@/Interfaces/MissionData';
 import { ref, onMounted } from 'vue';
 
-const missionID = ref<MissionID>();
-const missionDataObject = ref<MissionData>([]);
+const missionID = ref<MissionID[]>([]);
+const missionDataObject = ref<MissionData[]>([]);
 
 onMounted(()=>{
     getMissionIDs();
@@ -41,14 +41,18 @@ onMounted(()=>{
 
 function getMissionIDs(){
     missionID.value = JSON.parse(localStorage.getItem("missionID") || "[]");
+    console.log(missionID.value);
+    
     getMissionData();
 }
 
 function getMissionData(){
-    for(var i of missionID.value){
-       let missData:MissionData = JSON.parse(localStorage.getItem(i) || "{}");        
-        missionDataObject.value.push(missData);       
+    for(var i in missionID.value){
+        let id = missionID.value[i]        
+       let missData:MissionData = JSON.parse(localStorage.getItem(id) || "{}");        
+        missionDataObject.value?.push(missData);
     }
+    console.log(missionDataObject.value);
 }
 
 </script>
