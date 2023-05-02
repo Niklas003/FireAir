@@ -14,8 +14,8 @@
                         </tr>
                     </thead>
                     <tbody class="cursor-pointer">
-                        <tr class="hover:bg-[#3c454b]" v-for="(i, index) in missionID" :key="index">
-                            <th class="border border-slate-600 font-normal py-4 text-lg px-1"><router-link :to="{name: 'missionDashboard', params:{missionID: i}}">{{i}}</router-link></th>
+                        <tr class="hover:bg-[#3c454b]" v-for="(i, index) in missionID" :key="index" @click="loadMission(i)">
+                            <th class="border border-slate-600 font-normal py-4 text-lg px-1">{{i}}</th>
                             <th class="border border-slate-600 font-normal text-lg px-1">{{missionDataObject[index].date}}</th>
                             <th class="border border-slate-600 font-normal text-lg px-1">{{missionDataObject[index].time}}</th>
                             <th class="border border-slate-600 font-normal text-lg px-1">{{missionDataObject[index].missionType}}</th>
@@ -29,10 +29,10 @@
 </template>
 <script setup lang="ts">
 import { MissionData } from '@/Interfaces/MissionData';
-import { MissionID } from '@/Interfaces/MissionData';
+import router from '@/router';
 import { ref, onMounted } from 'vue';
 
-const missionID = ref<MissionID[]>([]);
+const missionID = ref([]);
 const missionDataObject = ref<MissionData[]>([]);
 
 onMounted(()=>{
@@ -41,8 +41,6 @@ onMounted(()=>{
 
 function getMissionIDs(){
     missionID.value = JSON.parse(localStorage.getItem("missionID") || "[]");
-    console.log(missionID.value);
-    
     getMissionData();
 }
 
@@ -52,7 +50,10 @@ function getMissionData(){
        let missData:MissionData = JSON.parse(localStorage.getItem(id) || "{}");        
         missionDataObject.value?.push(missData);
     }
-    console.log(missionDataObject.value);
+}
+
+function loadMission(missionID:undefined){    
+    router.push({name: 'missionDashboard', params:{missionID: missionID}})
 }
 
 </script>
