@@ -7,7 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import router from '@/router';
 import { onMounted, ref } from 'vue';
 
 var dateStr = ref('');
