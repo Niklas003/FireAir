@@ -1,11 +1,11 @@
 <template>
     <div>
         <div class="flex flex-col">
-            <Transition name="fade" mode="out-in">
-                <label v-if="userInput.length > 0" for="input" class="transition ease-in duration-300 text-white relative -bottom-6 left-2 bg-[#22272A] w-fit p-0.5 border border-green-500 rounded-t-md">{{ props.placeholder }}</label>
-            </Transition>
+            <span class="p-float-label">
             <InputText v-on:change="emitInput()" v-on:input="emitInput()" id="input" :placeholder="props.placeholder" 
             :value="userInput" @input="e => userInput = (e?.target as any)?.value" required />
+            <label for="username">{{props.placeholder}}</label>
+        </span>
         </div>
     </div>
 </template>
